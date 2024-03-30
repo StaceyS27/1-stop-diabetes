@@ -2,7 +2,7 @@
 
 ## Work In Progress :construction: :hammer_and_wrench:
 
-**Currently:** Building the backend of the app 
+**Currently:** Building the backend of the app </br>
 **Goal:** Build an app that enpowers diabetics to be active and informed participants in their care
 
 **Desired Features**
