@@ -1,4 +1,13 @@
-# React + Express Boilerplate
+# 1 Stop Diabetes
+
+## Work In Progress :construction: :hammer_and_wrench:
+
+**Currently:** Building the backend of the app 
+**Goal:** Build an app that enpowers diabetics to be active and informed participants in their care
+
+**Desired Features**
+-  Receive notifications for upcoming appointments and overdue appointments
+-  Learn and understand the roles different medical specialties play in their overall care
 
 ## Getting Started
 
