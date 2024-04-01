@@ -54,6 +54,7 @@ model Appointment {
   doctorId Int
   lastVisit DateTime? 
   nextVisit DateTime? 
+  frequencyOfVisit Int 
   status Status 
 }
 
