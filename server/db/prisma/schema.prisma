@@ -31,7 +31,7 @@ appointment Appointment[]
 
 model Specialty {
   id Int @id @default(autoincrement())
-  specialtyName String
+  specialtyName String @unique
   recommendedFrequency Int
   doctor Doctor[]
 }
