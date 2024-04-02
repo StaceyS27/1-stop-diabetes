@@ -121,7 +121,9 @@ async function main() {
             state: 'New York',
             zipcode: '10036'
         }
-    })
+    });
+
+
 
     // seeding doctor table
     await prisma.doctor.upsert({
@@ -132,6 +134,28 @@ async function main() {
             phoneNumber: '(718) 344-9158',
             specialtyId: 2,
             facilityId: 2
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Muhammed Ahmed'},
+        update: {name: 'Dr. Muhammed Ahmed'},
+        create: {
+            name: 'Dr. Muhammed Ahmed',
+            phoneNumber: '(718) 344-9157',
+            specialtyId: 5,
+            facilityId: 2
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Janiki Kanamil'},
+        update: {},
+        create: {
+            name: 'Dr. Janiki Kanamil',
+            phoneNumber: '(718) 981-0154',
+            specialtyId: 2,
+            facilityId: 3,
         }
     });
 
