@@ -20,7 +20,7 @@ model User {
 
 model Doctor {
 id  Int @id @default(autoincrement())
-name String
+name String @unique
 phoneNumber String
 specialty Specialty @relation(fields: [specialtyId], references: [id])
 specialtyId Int
@@ -38,7 +38,7 @@ model Specialty {
 
 model Facility {
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
   address String
   city String
   state String 
