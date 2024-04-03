@@ -123,8 +123,6 @@ async function main() {
         }
     });
 
-
-
     // seeding doctor table
     await prisma.doctor.upsert({
         where: {name: 'Dr. Xing Xu'},
@@ -158,6 +156,83 @@ async function main() {
             facilityId: 3,
         }
     });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Anna Kazaresha'},
+        update: {},
+        create: {
+            name: 'Dr. Anna Kazaresha',
+            phoneNumber: '(718) 293-8851',
+            specialtyId: 5,
+            facilityId: 1,
+        }
+    });
+    
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Paolina Campos'},
+        update: {},
+        create: {
+            name: 'Dr. Paolina Campos',
+            phoneNumber: '(718) 293-8852',
+            specialtyId: 6,
+            facilityId: 1,
+        }
+    });
+ 
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Gerald Newburg'},
+        update: {},
+        create: {
+            name: 'Dr. Gerald Newburg',
+            phoneNumber: '(718) 344-9156',
+            specialtyId: 1,
+            facilityId: 2
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Victoria Linares'},
+        update: {},
+        create: {
+            name: 'Dr. Victoria Linares',
+            phoneNumber: '(718) 344-9151',
+            specialtyId: 6,
+            facilityId: 2,
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. John Lee'},
+        update: {},
+        create: {
+            name: 'Dr. John Lee',
+            phoneNumber: '(718) 981-0154',
+            specialtyId: 5,
+            facilityId: 3
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Michelle Rosenblatt'},
+        update: {},
+        create: {
+            name: 'Dr. Michelle Rosenblatt',
+            phoneNumber: '(718) 981-0151',
+            specialtyId: 1,
+            facilityId: 3
+        }
+    });
+
+    await prisma.doctor.upsert({
+        where: {name: 'Dr. Oluwatosin Bambola'},
+        update: {},
+        create: {
+            name: 'Dr. Oluwatosin Bambola',
+            phoneNumber: '(718) 981-0152',
+            specialtyId: 6,
+            facilityId: 3
+        }
+    })
 
 
 }
