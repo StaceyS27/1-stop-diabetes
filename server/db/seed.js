@@ -60,7 +60,7 @@ async function main() {
         }
     });
 
-    // seeding facility table 
+    // seeding facility table & some associated doctors
     await prisma.facility.upsert({
         where: {name: 'The Brookhaven Center'},
         update: {},
@@ -119,7 +119,59 @@ async function main() {
             address: '2905 St. Nicholas Avenue',
             city: 'New York',
             state: 'New York',
-            zipcode: '10036'
+            zipcode: '10036',
+            doctor: {
+                create: [
+                    {
+                        name: 'Dr. Grace Adebayo',
+                        phoneNumber: '(212) 351-8001',
+                        specialtyId: 3
+                    },
+                    {
+                        name: 'Dr. Huyen Winnie',
+                        phoneNumber: '(212) 351-8005',
+                        specialtyId: 3
+                    },
+                    {
+                        name: 'Dr. Rebecca Simmons',
+                        phoneNumber: '(212) 351-8008',
+                        specialtyId: 3
+                    }
+                ]
+            }
+        }
+    });
+
+   
+
+    await prisma.facility.upsert({
+        where: {name: 'The Eye and Surgery Center'},
+        update: {},
+        create: {
+            name: 'The Eye and Surgery Center',
+            address: '2233 Madison Avenue',
+            city: 'New York',
+            state: 'New York',
+            zipcode: '10029',
+            doctor: {
+                create: [
+                    {
+                        name: 'Dr. Elie Islam',
+                        phoneNumber: '(212) 891-7843',
+                        specialtyId: 4
+                    },
+                    {
+                        name: 'Dr. James Kelly',
+                        phoneNumber: '(212) 981-7841',
+                        specialtyId: 4
+                    },
+                    {
+                        name: 'Dr. Luz Rivera',
+                        phoneNumber: '(212) 981-7848',
+                        specialtyId: 4
+                    }
+                ]
+            }
         }
     });
 
