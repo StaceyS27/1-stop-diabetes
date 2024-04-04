@@ -284,8 +284,54 @@ async function main() {
             specialtyId: 6,
             facilityId: 3
         }
-    })
+    });
 
+    // seeding user table with appointments
+    async function createUser1() {
+        const hashedPassword = await bcrypt.hash("hello", SALT_COUNT);
+
+        const lastVisitPodiatry = new Date('2024-01-10T10:00:00');
+        const nextVisitPodiatry = new Date('2024-06-20T13:00:00');
+
+        const lastVisitOpthalmology = new Date('2023-03-27T09:30:00');
+        const nextVisitOpthalmology = new Date('2024-05-01T15:00:00');
+    
+        await prisma.user.upsert({
+            where: {email: 'sallyj@gmail.com'},
+            update: {},
+            create: {
+                name: 'Sally Johnson',
+                email: 'sallyj@gmail.com',
+                password: hashedPassword,
+                appointment: {
+                    create: [
+                        {
+                            doctorId: 21,
+                            lastVisit: lastVisitPodiatry,
+                            nextVisit: nextVisitPodiatry,
+                            frequencyOfVisit: 6,
+                            status: 'scheduled'
+                        },
+                        {
+                            doctorId: 26,
+                            lastVisit: lastVisitOpthalmology,
+                            nextVisit: nextVisitOpthalmology,
+                            frequencyOfVisit: 12,
+                            status: 'overdue'
+                        },
+                        {
+                            // put in cardiology with completed appt (old one)
+                            // and one that is overdue bc nextvisit empty (prev from compledted) and its been more than recomm time
+                        },
+                        {
+                            // also put one upcoming with dates near by primary care 
+                        }
+                    ]
+                }
+            }
+        })
+    };
+    createUser1();
 
 }
 main()
