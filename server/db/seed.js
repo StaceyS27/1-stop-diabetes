@@ -294,7 +294,12 @@ async function main() {
         const nextVisitPodiatry = new Date('2024-06-20T13:00:00');
 
         const lastVisitOpthalmology = new Date('2023-03-27T09:30:00');
-        const nextVisitOpthalmology = new Date('2024-05-01T15:00:00');
+        const nextVisitOpthalmology = new Date('2024-06-01T15:00:00');
+
+        const lastVisitCadiology = new Date('2022-11-05T11:00:00');
+
+        const lastVisitPrimary = new Date('2024-04-01T16:45:00');
+        const NextVisitPrimary = new Date('2024-06-30T08:30:00')
     
         await prisma.user.upsert({
             where: {email: 'sallyj@gmail.com'},
@@ -320,11 +325,17 @@ async function main() {
                             status: 'overdue'
                         },
                         {
-                            // put in cardiology with completed appt (old one)
-                            // and one that is overdue bc nextvisit empty (prev from compledted) and its been more than recomm time
+                            doctorId: 9,
+                            lastVisit: lastVisitCadiology,
+                            frequencyOfVisit: 12,
+                            status: 'overdue'
                         },
                         {
-                            // also put one upcoming with dates near by primary care 
+                            doctorId: 3,
+                            lastVisit: lastVisitPrimary,
+                            nextVisit: NextVisitPrimary,
+                            frequencyOfVisit: 3,
+                            status: 'upcoming'
                         }
                     ]
                 }
@@ -332,6 +343,22 @@ async function main() {
         })
     };
     createUser1();
+
+    async function createUser2() {
+        const hashedPassword = await bcrypt.hash("hello", SALT_COUNT);
+
+        await prisma.user.upsert({
+            where: {email: 'john90@gmail.com'},
+            update: {},
+            create: {
+                name: 'John Peterson',
+                email: 'john90@gmail.com',
+                password: hashedPassword
+            }
+        })
+    }
+    createUser2()
+
 
 }
 main()
