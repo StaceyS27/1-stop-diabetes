@@ -6,8 +6,8 @@
 **Goal:** Build an app that enpowers diabetics to be active and informed participants in their care
 
 **Desired Features**
--  Receive notifications for upcoming appointments and overdue appointments
--  Learn and understand the roles different medical specialties play in their overall care
+-  Receive notifications for upcoming and overdue appointments
+-  Learn and understand the roles different medical specialties play in your overall care 
 
 ## Getting Started
 
