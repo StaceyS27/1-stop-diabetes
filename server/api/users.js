@@ -23,6 +23,9 @@ usersRouter.get('/me', requireUser, async function (req, res, next) {
                 id: req.user.id
             },
         });
+
+        delete singleUser.password;
+        
         res.send(singleUser);
     } catch {
         next({
