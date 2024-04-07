@@ -20,7 +20,9 @@ app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 })
 
-// TODO: Add your routers here
+// Add your routers here
+const apiRouter = require('./api/index');
+app.use('/api', apiRouter);
 
 // Error handling middleware
 app.use((error, req, res, next) => {
