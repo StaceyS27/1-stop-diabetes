@@ -6,7 +6,9 @@ const bcrypt = require('bcrypt');
 const SALT_COUNT = 10;
 
 const jwt = require('jsonwebtoken');
-const {JWT_SECRET} = process.env
+const {JWT_SECRET} = process.env;
+
+const {requireUser} = require('./utils');
 
 // GET /api/users/test
 usersRouter.get('/test', async function (req, res, next) {
