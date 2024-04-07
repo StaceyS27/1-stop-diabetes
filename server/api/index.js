@@ -50,6 +50,9 @@ apiRouter.use(async function (req, res, next) {
 });
 
 //subrouters of apiRouter
+const usersRouter = require('./users')
+apiRouter.use('/users', usersRouter);
+
 
 
 module.exports = apiRouter
