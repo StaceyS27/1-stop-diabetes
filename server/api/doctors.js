@@ -17,7 +17,7 @@ doctorsRouter.get('/', async function (req, res, next) {
             }
         });
 
-        res.send(allDoctors)
+        res.send(allDoctors);
 
     } catch {
         next({
@@ -26,8 +26,26 @@ doctorsRouter.get('/', async function (req, res, next) {
     }
 });
 
-// GET /api/doctors/:doctorId
+// GET /api/doctors/:doctorId - get single doctor information 
+doctorsRouter.get('/:doctorId', async function (req, res, next) {
+    try {
+        const singleDoctor = await prisma.doctor.findUnique({
+            where : {
+                id: Number(req.params.doctorId)
+            },
+            include: {
+                specialty: true, 
+                facility: true,
+            }
+        });
 
+        res.send(singleDoctor)
+    } catch {
+        next({
+            message: 'Unable to get individual doctor information.'
+        })
+    }
+});
 
 
 
