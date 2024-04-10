@@ -59,6 +59,9 @@ apiRouter.use('/doctors', doctorsRouter);
 const specialtyRouter = require('./specialty')
 apiRouter.use('/specialty', specialtyRouter);
 
+const facilityRouter = require('./facility')
+apiRouter.use('/facility', facilityRouter);
+
 
 
 module.exports = apiRouter
