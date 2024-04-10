@@ -19,7 +19,7 @@ doctorsRouter.get('/', async function (req, res, next) {
 
         res.send(allDoctors);
 
-    } catch {
+    } catch (error) {
         next({
             message: 'Unable to get all doctors.'
         })
@@ -40,7 +40,7 @@ doctorsRouter.get('/:doctorId', async function (req, res, next) {
         });
 
         res.send(singleDoctor)
-    } catch {
+    } catch (error) {
         next({
             message: 'Unable to get individual doctor information.'
         })
