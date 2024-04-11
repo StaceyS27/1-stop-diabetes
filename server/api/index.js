@@ -62,6 +62,8 @@ apiRouter.use('/specialty', specialtyRouter);
 const facilityRouter = require('./facility')
 apiRouter.use('/facility', facilityRouter);
 
+const appointmentsRouter = require('./appointments')
+apiRouter.use('/appointments', appointmentsRouter);
 
 
 module.exports = apiRouter
