@@ -29,6 +29,28 @@ appointmentsRouter.get('/', requireUser, async function (req, res, next) {
 });
 
 // POST /api/appointments - post new appointments 
+appointmentsRouter.post('/', requireUser, async function (req, res, next) {
+    try {
+        const newAppointment = await prisma.appointment.create({
+            data: {
+                userId: req.user.id,
+                doctorId: req.body.doctorId,
+                lastVisit: req.body.lastVisit,
+                nextVisit: req.body.nextVisit,
+                frequencyOfVisit: req.body.frequencyOfVisit,
+                status: 'scheduled'
+            }
+        })
+        res.send(newAppointment)
+    } catch (error) {
+        next({
+            message: 'Unable to add appointment for user.'
+        })
+    }
+});
+// ** TODO: test post endpoint and search how to test dateTime data type in postman
+
+
 
 // PUT /api/appointments/:appointmentId - edit appointment details 
 
