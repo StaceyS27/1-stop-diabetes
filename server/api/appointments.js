@@ -30,15 +30,23 @@ appointmentsRouter.get('/', requireUser, async function (req, res, next) {
 
 // POST /api/appointments - post new appointments 
 appointmentsRouter.post('/', requireUser, async function (req, res, next) {
+    function setDateTime(stringTime) {
+        if(!stringTime) {
+            return null;
+        } else {
+            return new Date(stringTime);
+        }
+    }
+
     try {
         const newAppointment = await prisma.appointment.create({
             data: {
                 userId: req.user.id,
                 doctorId: req.body.doctorId,
-                lastVisit: req.body.lastVisit,
-                nextVisit: req.body.nextVisit,
+                lastVisit: setDateTime(req.body.lastVisit),
+                nextVisit: setDateTime(req.body.nextVisit),
                 frequencyOfVisit: req.body.frequencyOfVisit,
-                status: 'scheduled'
+                status: req.body.status
             }
         })
         res.send(newAppointment)
@@ -48,7 +56,9 @@ appointmentsRouter.post('/', requireUser, async function (req, res, next) {
         })
     }
 });
-// ** TODO: test post endpoint and search how to test dateTime data type in postman
+
+// ** TODO: look up why time in database is 4 hrs ahead for some times and 5 for others
+// try to learn and fix time insertion 
 
 
 
