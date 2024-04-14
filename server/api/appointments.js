@@ -2,7 +2,7 @@ const express = require("express");
 const appointmentsRouter = express.Router();
 const prisma = require("../db/client");
 
-const {requireUser} = require("./utils")
+const {requireUser, setDateTime } = require("./utils")
 
 // GET /api/appointments - get all appointments by userId (req.user.id)
 appointmentsRouter.get('/', requireUser, async function (req, res, next) {
@@ -30,14 +30,6 @@ appointmentsRouter.get('/', requireUser, async function (req, res, next) {
 
 // POST /api/appointments - post new appointments 
 appointmentsRouter.post('/', requireUser, async function (req, res, next) {
-    function setDateTime(stringTime) {
-        if(!stringTime) {
-            return null;
-        } else {
-            return new Date(stringTime);
-        }
-    }
-
     try {
         const newAppointment = await prisma.appointment.create({
             data: {
@@ -57,12 +49,30 @@ appointmentsRouter.post('/', requireUser, async function (req, res, next) {
     }
 });
 
-// ** TODO: look up why time in database is 4 hrs ahead for some times and 5 for others
-// try to learn and fix time insertion 
-
-
-
-// PUT /api/appointments/:appointmentId - edit appointment details 
+// PUT /api/appointments/:appointmentId - edit appointment details
+ appointmentsRouter.put('/:appointmentId', requireUser, async function (req, res, next){
+    try{
+        const updatedAppointment = await prisma.appointment.update({
+            where: {
+                id: Number(req.params.appointmentId),
+            },
+            data: {
+                userId: req.user.id,
+                doctorId: req.body.doctorId,
+                lastVisit: setDateTime(req.body.lastVisit),
+                nextVisit: setDateTime(req.body.nextVisit),
+                frequencyOfVisit: req.body.frequencyOfVisit,
+                status: req.body.status,
+            }
+        });
+        res.send(updatedAppointment);
+    } catch (error) {
+        console.error(error);
+        next({
+            message: "Unable to update the appointment.",
+        })
+    }
+ });
 
 // DELETE /api/appointments/:appointmentId - delete appointment 
 
