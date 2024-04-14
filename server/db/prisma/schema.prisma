@@ -63,4 +63,5 @@ enum Status {
   completed
   overdue
   upcoming
+  needToSchedule
 }
