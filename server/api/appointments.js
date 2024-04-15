@@ -75,7 +75,23 @@ appointmentsRouter.post('/', requireUser, async function (req, res, next) {
  });
 
 // DELETE /api/appointments/:appointmentId - delete appointment 
-
+appointmentsRouter.delete('/:appointmentId', requireUser, async function (req, res, next) {
+    try {
+        const deletedAppointment = await prisma.appointment.delete({
+            where: {
+                id: Number(req.params.appointmentId),
+            }
+        });
+        res.send({
+            message: 'Appointment successfully deleted.',
+            deletedAppointment
+        });
+    } catch (error) {
+        next({
+            message: 'Unable to delete appointment.'
+        })
+    }
+});
 
 
 module.exports = appointmentsRouter; 
