@@ -43,7 +43,7 @@ const stopDiabetesApi= createApi({
         }),
 
         //-----------------DOCTOR ENDPOINTS------------------------//
-        // GET /api/doctors- get all doctors with specialty and facility
+        // GET /api/doctors - get all doctors with specialty and facility
         getDoctors: builder.query({
             query: () => "/api/doctors",
             providesTags: ["doctors"]
@@ -54,9 +54,20 @@ const stopDiabetesApi= createApi({
             providesTags: ["singleDoctor"]
         }),
 
-        //------------------FACILITY ENDPOINTS---------------------//
+        //-----------------FACILITY ENDPOINTS----------------------//
+        // GET /api/facility - get all facilities with associated doctors
+        getFacilities: builder.query({
+            query: () => "/api/facility",
+            providesTags: ["facilities"]
+        }),
+        // GET /api/facility - get single facility w/ doctors
+        getSingleFacility: builder. query({
+            query: (facilityId) => `/api/facility/${facilityId}`,
+            providesTags: ["singleFacility"]
+        }),
 
-
+        //----------------SPECIALTY ENDPOINTS--------------------//
+        
     })
 });
 
