@@ -20,7 +20,7 @@ specialtyRouter.get('/', async function (req, res, next) {
     }    
 });
 
-// GET /api/specialty/:specialtyId - get single specialty wih doctors
+// GET /api/specialty/:specialtyId - get single specialty with doctors
 specialtyRouter.get('/:specialtyId', async function (req, res, next) {
     try {
         const singleSpecialty = await prisma.specialty.findUnique({
