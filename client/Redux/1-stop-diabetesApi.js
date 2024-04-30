@@ -44,6 +44,28 @@ const stopDiabetesApi= createApi({
 
         //-----------------DOCTOR ENDPOINTS------------------------//
         // GET /api/doctors- get all doctors with specialty and facility
-        
+        getDoctors: builder.query({
+            query: () => "/api/doctors",
+            providesTags: ["doctors"]
+        }),
+        // GET /api/doctors - get single doctor by ID
+        getSingleDoctor: builder.query({
+            query: (doctorId) => `/api/doctors/${doctorId}`,
+            providesTags: ["singleDoctor"]
+        }),
+
+        //------------------FACILITY ENDPOINTS---------------------//
+
+
     })
-})
+});
+
+export default stopDiabetesApi;
+export const {
+    useGetUserQuery,
+    useRegisterUserMutation,
+    useLoginUserMutation,
+
+    useGetDoctorsQuery,
+    useGetSingleDoctorQuery,
+} = stopDiabetesApi
