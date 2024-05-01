@@ -79,6 +79,37 @@ const stopDiabetesApi= createApi({
         }),
 
         //---------------APPOINTMENT ENDPOINTS------------------//
+        // GET /api/appointments - get all appointments by userId (req.user.id)
+        getUserAppointments: builder.query({
+            query: () => "/api/appointments",
+            providesTags: ["userAppointments"]
+        }),
+        // POST /api/appointments - post new appointments
+        addAppointment: builder.mutation({
+            query: (appointment) => ({
+                url: "/api/appointments",
+                method: "POST",
+                body: appointment,
+            }),
+            invalidatesTags: ["userAppointments"]
+        }),
+        // PUT /api/appointments/:appointmentId - edit appointment details
+        updateAppointment: builder.mutation({
+            query: (appointmentId, appointment) => ({
+                url: `/api/appointments/:${appointmentId}`,
+                method: "PUT",
+                body: appointment
+            }),
+            invalidatesTags: ["userAppointments"]
+        }),
+        // DELETE /api/appointments/:appointmentId - delete appointment
+        deleteAppointment: builder.mutation({
+            query: (appointmentId) => ({
+                url: `/api/appointments/${appointmentId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["userAppointments"]
+        })
     })
 });
 
@@ -96,5 +127,10 @@ export const {
 
     useGetSpecialtiesQuery,
     useGetSingleSpecialtyQuery,
+
+    useGetUserAppointmentsQuery,
+    useAddAppointmentMutation,
+    useUpdateAppointmentMutation,
+    useDeleteAppointmentMutation
 
 } = stopDiabetesApi
